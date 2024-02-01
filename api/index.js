@@ -3,26 +3,27 @@ import mysql from "mysql"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
-import userRoute from "./routes/auth.js"
+import {config} from "dotenv"
+import authRoute from "./routes/auth.js"
+import postRoute from "./routes/posts.js"
+import followRoute from "./routes/followers.js"
+import Likes from "./routes/likes.js"
+import Comments from "./routes/comments.js"
 
 const app = express()
 app.use(express.json())
 app.use(cors())
-app.use('/api/v1/user', userRoute)
+app.use(cookieParser())
+config()
+app.use('/api/v1/user', authRoute)
+app.use('/api/v1/posts/', postRoute)
+app.use('/api/v1/reach/', followRoute)
+app.use(Likes)
+app.use('/api/v1/comments', Comments)
 
-export const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "moonlitE54321$",
-    database: "weeb social"
-}) 
-db.connect(function(err){
-    if (err)
-    throw err;
-    console.log("connection successful")
-})
-
-const port = 8000 
+ 
+const port = process.env.port 
 app.listen(port,  ()=>{
     console.log("Server running");
+     
 })
