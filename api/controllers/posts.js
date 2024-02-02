@@ -1,5 +1,5 @@
 import {db} from "../config/connectDB.js"
-import {authenticateUser} from "../../middlewares/verify.mjs"
+import {authenticateUser} from "../middlewares/verify.mjs"
 import moment from "moment"
 
 
@@ -32,11 +32,12 @@ export const userPosts = (req, res) => {
         const user = req.user;
         //QUERY DB TO GET POSTS
         const q = "SELECT p.*, u.id AS userId, username, profilePic FROM posts AS p LEFT JOIN users AS u ON (u.id = p.userId) WHERE userId = ?";
-        db.query(q, [user.id], (err, data) => {
+        const id = req.params.id
+        db.query(q, [id], (err, data) => {
             if (err) {
                 return res.status(500).json(err);
             }
-            res.status(200).json(data);
+                return res.status(200).json(data);
         });
     });
 };
@@ -48,7 +49,6 @@ export const followingPosts = (req, res)=>{
         const user = req.user;
         //QUERY DB TO GET POSTS
         const q = "SELECT p.*, u.id AS userId, username, profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userId) LEFT JOIN reach AS r ON (p.userId = r.followed) WHERE r.follower = ? OR p.userId = ?";
-
         db.query(q, [user.id, user.id], (err,data)=>{
         if(err) return res.status(500).json(err)
         res.status(200).json(data)
@@ -65,7 +65,7 @@ export const allPosts = (req, res)=>{
         const category = req.params.category;
         db.query(q, category, (err,data)=>{
         if(err) return res.status(500).json(err)
-        if(data.category == 0){
+        if(data.category === 0){
             return res.status(404).json("Category doesn't exist")
         }
         else {

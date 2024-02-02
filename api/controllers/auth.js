@@ -1,22 +1,21 @@
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import {db} from "../config/connectDB.js"
+import {errorHandler} from "../middlewares/errors.mjs"
 import {config} from "dotenv"
 config()
 
 export const register = (req, res)=>{
-    //QUERY DB TO CHECK FOR EXISTING CREDENTIALS
+    try{
+        //QUERY DB TO CHECK FOR EXISTING CREDENTIALS
     const q = "SELECT * FROM users WHERE username = (?)"
-
     db.query(q, [req.body.username], (err,data)=>{
         if(err) return res.status(500).json(err)
         if(data.length) return res.status(409).json("Username exists!")
     })
-
     //HASH PASSWORD
     const salt = bcrypt.genSaltSync(10)
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
-
     //REGISTER USER
     const r = "INSERT INTO users (`email`, `username`, `nationality`, `password`, `coverPhoto`, `profilePic`, `bio`) VALUES(?)";
      const values = [
@@ -29,14 +28,18 @@ export const register = (req, res)=>{
         req.body.bio,
      ];
      db.query(r, [values], (err,data)=>{
-        if(err) return res.status(500).json(err)
-        const payload = {id: data.id}
+        if(err)  throw err
+        const payload = data.id
         const token = jwt.sign(payload, process.env.Secretkey);
-        res.cookie( accessToken, token,{
+        res.cookie('accessToken', token,{
             httpOnly: true
-        }).status(200).json("User created successfully")
+        }).status(200).json({message: "User created successfully"})
     })
-}
+    } catch (err) {
+        // Throw error to be caught by the global error handler
+        next(err);
+    }
+} 
 
 export const login = (req, res)=>{
     //CHECK DATABASE FOR USER

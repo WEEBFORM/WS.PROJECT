@@ -1,5 +1,5 @@
 import {db} from "../config/connectDB.js"
-import {authenticateUser} from "../../middlewares/verify.mjs"
+import {authenticateUser} from "../middlewares/verify.mjs"
 
 //API TO LIKE POST
 export const like = (req, res)=>{

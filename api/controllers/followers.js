@@ -1,5 +1,5 @@
 import {db} from "../config/connectDB.js"
-import {authenticateUser} from "../../middlewares/verify.mjs"
+import {authenticateUser} from "../middlewares/verify.mjs"
 
 //API TO FOLLOW USER
 export const followUser = (req, res)=>{
@@ -22,6 +22,8 @@ export const followUser = (req, res)=>{
             }
             if (data.length > 0) {
             return res.status(409).json("You are already following this user");
+            }if(data.length === 0){
+                return res.status(404).json("User does not exist");
             }
            //QUERY DB TO FOLLOW USER
             const q = "INSERT INTO reach (followed, follower) VALUES(?, ?)"
@@ -69,6 +71,10 @@ export const getFollowing = (req, res)=>{
         if (data && data.length > 0) {
             const followed = data.map(obj => Number(obj.followed));
             return res.status(200).json(followed);
+        }else{
+            res.status(404).json(
+                'Not following anyone yet'
+            )
         }
         })
     }) 

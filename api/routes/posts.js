@@ -6,7 +6,7 @@ const router = express.Router()
 router.post('/', newPost)
 router.get('/:category', allPosts)
 router.get('/', followingPosts)
-router.get('/users/:id', userPosts)
+router.get('/user/:id', userPosts)
 router.delete('/:id', deletePost)
 
 
