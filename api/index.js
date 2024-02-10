@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
 import {config} from "dotenv"
 import authRoute from "./routes/auth.js"
+import Users from "./routes/users.js"
 import postRoute from "./routes/posts.js"
 import followRoute from "./routes/followers.js"
 import Likes from "./routes/likes.js"
@@ -19,6 +20,7 @@ app.use(cookieParser())
 app.use(bodyParser())
 config()
 app.use('/api/v1/user', authRoute)
+app.use('/api/vi', Users)
 app.use('/api/v1/posts/', postRoute)
 app.use('/api/v1/reach/', followRoute)
 app.use(Likes)
