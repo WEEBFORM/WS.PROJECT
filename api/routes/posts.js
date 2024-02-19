@@ -1,5 +1,5 @@
 import express from "express";
-import {newPost, allPosts, followingPosts, userPosts, deletePost} from "../controllers/posts.js"
+import {newPost, allPosts, followingPosts, userPosts, deletePost} from "../controllers/feedInteractions/posts.js"
 
 const router = express.Router()
 

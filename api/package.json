@@ -2,8 +2,8 @@
   "name": "WS.PROJECT",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/Mmezirim/WS.PROJECT",
-  "author": "<nnamdichimmezirim@gmail.com>",
+  "repository": "https://github.com/WEEBFORM/WS.PROJECT.git",
+  "author": "Chimmezirim",
   "license": "MIT",
   "type": "module",
   "dependencies": {
