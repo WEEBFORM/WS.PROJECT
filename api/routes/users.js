@@ -1,5 +1,5 @@
 import express from "express";
-import {viewProfile, editProfile} from "../controllers/user.js"
+import {viewProfile, editProfile} from "../controllers/Users/user.js"
 
 const router = express.Router()
 
