@@ -17,7 +17,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 app.use(cookieParser())
-app.use(bodyParser())
+app.use(express.urlencoded({ extended: true }));
 config()
 app.use('/api/v1/user', authRoute)
 app.use('/api/vi', Users)

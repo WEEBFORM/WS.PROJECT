@@ -35,9 +35,9 @@ export const register = (req, res)=>{
             httpOnly: true
         }).status(200).json({message: "User created successfully"})
     })
-    } catch (err) {
+    } catch (error) {
         // Throw error to be caught by the global error handler
-        next(err);
+        next(errorHandler);
     }
 } 
 

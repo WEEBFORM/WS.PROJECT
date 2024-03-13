@@ -1,7 +1,7 @@
 // Define custom error handling middleware
- export function errorHandler(err, req, res, next) {
-    if (err.code === 'ER_DUP_ENTRY') {
-        return res.status(400).json({ error: 'Duplicate entry', message: err.sqlMessage });
+ export function errorHandler(error, req, res, next) {
+    if (error.name === 'ER_DUP_ENTRY') {
+        return res.status(400).json({ error: 'Duplicate entry', message: error.sqlMessage });
     } 
 
     next(err)

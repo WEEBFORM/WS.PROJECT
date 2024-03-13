@@ -22,7 +22,7 @@ export const viewProfile = (req, res)=>{
 }
 
 //API TO EDIT USER INFO
-export const viewReply = (req, res)=>{
+export const editProfile = (req, res)=>{
     authenticateUser(req, res, () => {
         const user = req.user;
         //QUERY DB TO INSERT NEW USER INFO
