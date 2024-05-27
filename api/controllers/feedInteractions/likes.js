@@ -13,7 +13,7 @@ export const like = (req, res)=>{
             user.id,
             postId
         ]
-        db.query(q, values, (err,data)=>{
+        db.query(q, values, (err, data)=>{
         if(err) {
             return res.status(500).json(err)
         }
