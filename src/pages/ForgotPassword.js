@@ -3,8 +3,12 @@ import { StyleSheet, Text, View, SafeAreaView, Image, TextInput } from "react-na
 import { Globalstyles } from '../Styles/globalstyles';
 import ButtonComp from '../components/ButtonComp';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({navigation}) => {
+    const login = ()=>{
+        navigation.navigate('Login')
+    }
   return (
+    <View style={Globalstyles.form}>
     <SafeAreaView>
         <View style={styles.layout}>
             <View style={styles.headerCon}>
@@ -16,13 +20,14 @@ const ForgotPassword = () => {
             </View>
             <View style={styles.inputCon}>
                 <TextInput placeholderTextColor='#B1B1B1' placeholder='Your email address' inputMode='email' textContentType='emailAddress' style={Globalstyles.formInput} />
-                <Text style={{color:'#908A8A'}}>Remember password? <Text style={{color:'#CF833F'}}>Login</Text></Text>
+                <Text onPress={()=>login()} style={{color:'#908A8A'}}>Remember password? <Text style={{color:'#CF833F'}}>Login</Text></Text>
             </View>
             <View style={styles.btnCon}>
             <ButtonComp text='Send'/>
             </View>
         </View>
     </SafeAreaView>
+    </View>
   )
 }
 
@@ -41,7 +46,7 @@ const styles = StyleSheet.create({
     headerTxt:{
         textAlign:'center',
         color: '#908A8A',
-        fontSize: '18'
+        fontSize: 18
     },
     imgCon:{
         alignItems: 'center'

@@ -3,8 +3,12 @@ import { StyleSheet, Text, View, SafeAreaView, Image, TextInput, Che } from "rea
 import ButtonComp from '../components/ButtonComp';
 import { Globalstyles } from '../Styles/globalstyles';
 
-const CreateAcct = () => {
+const CreateAcct = ({navigation}) => {
+    const login = ()=>{
+        navigation.navigate('Login')
+      }
   return (
+    <View style={Globalstyles.form}>
     <SafeAreaView>
         <View style={styles.layout}>
         <View style={styles.header}>
@@ -34,10 +38,11 @@ const CreateAcct = () => {
         </View>
         <View style={styles.signupCon}>
         <ButtonComp text="Sign up" />
-            <Text  style={{color:'#fff'}}>Alredy have an account? <Text style={{color:'#CF833F'}}>Log in</Text></Text>
+            <Text onPress={()=>{login()}} style={{color:'#fff'}}>Alredy have an account? <Text style={{color:'#CF833F'}}>Log in</Text></Text>
         </View>
         </View>
     </SafeAreaView>
+    </View>
   )
 }
 

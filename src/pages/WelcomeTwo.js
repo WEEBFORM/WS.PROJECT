@@ -9,7 +9,7 @@ import {
 import { Globalstyles } from "../Styles/globalstyles";
 import ButtonComp from "../components/ButtonComp";
 
-const WelcomeTwo = () => {
+const WelcomeTwo = ({next}) => {
   return (
     <SafeAreaView>
       <View  style={styles.layout}>
@@ -20,7 +20,7 @@ const WelcomeTwo = () => {
         Get the opportunity to connect with fellow Anime friends all over
         </Text>
         <Image source={require('../assets/slide2.png')} />
-        <ButtonComp text='Next'/>
+        <ButtonComp text='Next' next = {next}  />
       </View>
     </SafeAreaView>
   );
@@ -28,7 +28,7 @@ const WelcomeTwo = () => {
 
 const styles = StyleSheet.create({
   layout: {
-    gap: '20rem',
+    gap: 20,
     alignItems:'center'
   },
   weebform :{

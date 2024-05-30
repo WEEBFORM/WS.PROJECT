@@ -3,8 +3,15 @@ import { StyleSheet, Text, View, SafeAreaView, Image, TextInput } from "react-na
 import ButtonComp from '../components/ButtonComp';
 import { Globalstyles } from '../Styles/globalstyles';
 
-const Login = () => {
+const Login = ({navigation}) => {
+    const create = ()=>{
+        navigation.navigate('Create')
+      }
+      const forgot = ()=>{
+        navigation.navigate('Forgot your password')
+    }
   return (
+    <View style={Globalstyles.form}>
     <SafeAreaView>
         <View style={styles.layout}>
         <View style={styles.header}>
@@ -23,11 +30,12 @@ const Login = () => {
         </View>
         <View style={styles.signupCon}>
         <ButtonComp text="Login" />
-        <Text style={{color:'#CF833F'}}>Forgot your password?</Text>
-            <Text  style={{color:'#fff'}}>Don't have an account? <Text style={{color:'#CF833F'}}>Sign up</Text></Text>
+        <Text onPress={()=>{forgot()}}  style={{color:'#CF833F'}}>Forgot your password?</Text>
+            <Text onPress={()=>{create()}} style={{color:'#fff'}}>Don't have an account? <Text style={{color:'#CF833F'}}>Sign up</Text></Text>
         </View>
         </View>
     </SafeAreaView>
+    </View>
   )
 }
 

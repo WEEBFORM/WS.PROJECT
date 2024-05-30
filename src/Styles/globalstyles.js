@@ -35,10 +35,11 @@ export const Globalstyles = StyleSheet.create({
   },
   buttonCon: {
     backgroundColor: "#CF833F",
-    borderRadius: "60",
+    borderRadius: 60,
     width: "85%",
     marginTop: 30,
     padding: 7,
+    color: 'black'
   },
   ImageBg: {
     flex: 1,
@@ -69,6 +70,16 @@ export const Globalstyles = StyleSheet.create({
     justifyContent:'center',
     padding: 15,
     backgroundColor: 'black'
+  },
 
-  }
+  // Home pages 
+  Home:{
+    flex: 1,
+    backgroundColor: '#060606',
+    flexDirection:'column',
+    padding: 25,
+    color: 'white',
+    // borderWidth: 1,
+    // borderColor: "red"
+  },
 });

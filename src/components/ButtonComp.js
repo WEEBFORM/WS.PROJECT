@@ -1,16 +1,20 @@
 import React from 'react'
-import { View, Button } from 'react-native'
+import { View, Button, StyleSheet } from 'react-native'
 import { Globalstyles } from '../Styles/globalstyles'
 
-const ButtonComp = ({text, nav, screen}) => {
+const ButtonComp = ({text, next}) => {
   return (
     <View style={Globalstyles.buttonCon}>
-    <Button title={text} color='#fff' onPress={()=>{
-      console.log('food')
-      navigate.nav('Weebform')
-    }} />
+    <Button style={styles.text} title={text} color='white' onPress={next} />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  text:{
+    backgroundColor: 'black',
+    borderRadius: 20
+  }
+})
 
 export default ButtonComp

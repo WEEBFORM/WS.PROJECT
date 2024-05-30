@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     headerTxt:{
         textAlign:'center',
         color: '#908A8A',
-        fontSize: '18'
+        fontSize: 18
     },
     inputCon:{
         padding: 15,

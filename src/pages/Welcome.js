@@ -14,7 +14,7 @@ const Welcome = () => {
 const style = StyleSheet.create({
     welcome : {
         flex: 1,
-        background: 'linear-gradient(180deg, #CF833F 0%, #A54A15 47.5%, #6C2A04 100%);', 
+        // background: 'linear-gradient(180deg, #CF833F 0%, #A54A15 47.5%, #6C2A04 100%);', 
         alignItems: 'center',
         border: '2px solid black',
         // backgroundColor: '#A54A15',

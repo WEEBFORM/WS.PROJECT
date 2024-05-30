@@ -9,7 +9,7 @@ import {
 import { Globalstyles } from "../Styles/globalstyles";
 import ButtonComp from "../components/ButtonComp";
 
-const WelcomeThree = () => {
+const WelcomeThree = ({next}) => {
   return (
     <SafeAreaView>
       <View  style={styles.layout}>
@@ -20,7 +20,7 @@ const WelcomeThree = () => {
         Get acquainted with fellow weebs and explore what we have for you
         </Text>
         <Image source={require('../assets/slide3.png')} />
-        <ButtonComp text= 'Get Started' />
+        <ButtonComp text= 'Get Started' next={next} />
       </View>
     </SafeAreaView>
   );
@@ -28,7 +28,7 @@ const WelcomeThree = () => {
 
 const styles = StyleSheet.create({
   layout: {
-    gap: '20rem',
+    gap: 20,
     alignItems:'center'
   },
   weebform :{

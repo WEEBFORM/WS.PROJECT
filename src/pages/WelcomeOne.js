@@ -9,7 +9,7 @@ import {
 import { Globalstyles } from "../Styles/globalstyles";
 import ButtonComp from "../components/ButtonComp";
 
-const WelcomeOne = (navigation) => {
+const WelcomeOne = ({next}) => {
   return (
     <SafeAreaView>
       <View  style={styles.layout}>
@@ -21,7 +21,7 @@ const WelcomeOne = (navigation) => {
           everyday
         </Text>
         <Image source={require('../assets/slide1.png')} />
-        <ButtonComp text='Next' nav={navigation} />
+        <ButtonComp text='Next' next = {next} />
       </View>
     </SafeAreaView>
   );
@@ -29,7 +29,7 @@ const WelcomeOne = (navigation) => {
 
 const styles = StyleSheet.create({
   layout: {
-    gap: '20rem',
+    gap: 20,
     alignItems:'center'
   },
   weebform :{
