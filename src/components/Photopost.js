@@ -8,7 +8,7 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
-        photo: '',
+        photo: true,
     },
     {
         id: '2',
@@ -16,7 +16,7 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
-        photo: '',
+        photo: false,
     },
     {
         id: '3',
@@ -24,7 +24,7 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
-        photo: '',
+        photo: true,
     },
     {
         id: '4',
@@ -32,7 +32,7 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
-        photo: '',
+        photo: false,
     },
     {
         id: '5',
@@ -40,7 +40,7 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
-        photo: '',
+        photo: true,
     },
     {
         id: '6',
@@ -48,7 +48,7 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
-        photo: '',
+        photo: false,
     },
 ]
 
@@ -81,7 +81,7 @@ const Photopost = () => {
         <View style={styles.middle}>
             <Text style={styles.maintext}>Catch me if you can...😂😂😂</Text>
             <View>
-            <Image style={styles.photo} source={require('../assets/photopost.png')} />
+            {item.photo && <Image style={styles.photo} source={require('../assets/photopost.png')} />}
             </View>
         </View>
         <View style={styles.bottom}>
@@ -109,13 +109,13 @@ const styles = StyleSheet.create({
     layout:{
         marginVertical: 0,
         position: 'relative',
-        marginTop: 20,
+        paddingHorizontal: 20,
         // borderWidth: 3,
         borderColor: 'white'
     },
     ind:{
         position: 'absolute',
-        left: -25,
+        left: 0,
         top: 15
     },
     top:{
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 10,
         justifyContent: 'space-between',
-        paddingVertical: 10
+        paddingVertical: 10,
     },
     topLeft:{
         flexDirection: 'row',
@@ -160,12 +160,15 @@ const styles = StyleSheet.create({
         // paddingHorizontal: 20
     }, 
     photo:{
-        marginHorizontal: -25
+        width: '100%'
     },
     bottom:{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 15
+        padding: 15, 
+        borderTopColor: '#141313',
+        borderTopWidth: 1,
+        marginBottom: 10
     }
 })
 

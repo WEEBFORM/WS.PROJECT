@@ -30,7 +30,8 @@ export default function App() {
     //   Keyboard.dismiss()
     // }}>
     <View style={Globalstyles.container}>
-    {/* <NavigationContainer>
+    <NavigationContainer>
+    {/* 
     <Stack.Navigator screenOptions={{
       headerStyle:{
         backgroundColor: 'transperent'
@@ -116,6 +117,7 @@ export default function App() {
    
       </NavigationContainer> */}
       <Home/>
+      </NavigationContainer>
     </View>
     // </TouchableWithoutFeedback>
     
