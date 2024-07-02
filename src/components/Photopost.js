@@ -1,5 +1,7 @@
 import React from 'react'
+import { useState } from 'react';
 import { StyleSheet, Text, View, Image, FlatList, SafeAreaView, ImageBackground} from "react-native";
+import MorePost from './MorePost';
 
 const DATA =[
     {
@@ -8,7 +10,9 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
+        number_of_likes: 33,
         photo: true,
+        liked: true
     },
     {
         id: '2',
@@ -16,7 +20,9 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
+        number_of_likes: 0,
         photo: false,
+        liked: false
     },
     {
         id: '3',
@@ -24,7 +30,9 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
+        number_of_likes: 240,
         photo: true,
+        liked: true
     },
     {
         id: '4',
@@ -32,7 +40,9 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
+        number_of_likes: 0,
         photo: false,
+        liked: false
     },
     {
         id: '5',
@@ -40,7 +50,9 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
+        number_of_likes: 100,
         photo: true,
+        liked: true
     },
     {
         id: '6',
@@ -48,13 +60,25 @@ const DATA =[
         username: 'Shezzy',
         following: true,
         text: 'Catch me if you can',
+        number_of_likes: 0,
         photo: false,
+        liked: false
     },
 ]
 
 
 
 const Photopost = () => {
+    const [liked, setLiked] = useState(false)
+    const [more, setMore] = useState(false)
+    function likePost(){
+        setLiked(!liked)
+        console.log('liked')
+    }
+    function showmore(){
+        setMore(!more)
+        console.log('show')
+    }
   return (
     <View style={styles.container}>
         <FlatList
@@ -76,25 +100,28 @@ const Photopost = () => {
                 <View><Text style={styles.follow}>Follow</Text></View>
             </View>
             </View>
-            <View><Image source={require('../assets/more.png')} /></View>
+            <View><Image source={require('../assets/more.png')} onTouchStart={showmore} /></View>
         </View>
         <View style={styles.middle}>
             <Text style={styles.maintext}>Catch me if you can...😂😂😂</Text>
             <View>
-            {item.photo && <Image style={styles.photo} source={require('../assets/photopost.png')} />}
+            {item.photo && <Image style={styles.photo} source={require('../assets/post1.png')} />}
             </View>
         </View>
         <View style={styles.bottom}>
-            <View><Image source={require('../assets/like.png')} /></View>
-            <View><Image source={require('../assets/comment.png')} /></View>
-            <View><Image source={require('../assets/repost.png')} /></View>
-            <View><Image source={require('../assets/save.png')} /></View>
-            <View><Image source={require('../assets/share.png')} /></View>
+            <View style={styles.reactionCon} onTouchStart={likePost} ><Image source={liked ? require('../assets/liked.png'): require('../assets/like.png')}/><Text style={{...styles.text2, color: liked ? '#FF0808': 'white'}}>{item.number_of_likes>0 ? item.number_of_likes: 0}</Text></View>
+            <View style={styles.reactionCon}><Image source={require('../assets/comment.png')} /><Text style={styles.text2}>300</Text></View>
+            <View style={styles.reactionCon}><Image source={require('../assets/repost.png')} /><Text style={styles.text2}>300</Text></View>
+            <View style={styles.reactionCon}><Image source={require('../assets/save.png')} /><Text style={styles.text2}></Text></View>
+            <View style={styles.reactionCon}><Image source={require('../assets/share.png')} /><Text style={styles.text2}></Text></View>
         </View>
     </View>
             )}
             keyExtractor={(item)=> item.id}
         />
+        {
+            more && <MorePost/>
+        }
     </View>
     
   )
@@ -142,6 +169,16 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         lineHeight: 22
+    },
+    reactionCon:{
+        flexDirection: 'color',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    text2:{
+        color: 'white',
+        fontSize: 12,
+        lineHeight: 22,
     },
     follow:{
         color: '#cf833f',

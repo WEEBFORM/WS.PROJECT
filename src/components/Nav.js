@@ -18,8 +18,6 @@ const Nav = () => {
             Explore
         </Text>
         <Text style={styles.text}>New post</Text>
-        <Text style={styles.text}>Who to follow</Text>
-        <Image style={styles.images} source={require('../assets/news.png')} />
     </View>
     // <Tab.Navigator>
     // <Tab.Screen name='Explore' component={Explore}/>
@@ -34,14 +32,15 @@ const Nav = () => {
 const styles = StyleSheet.create({
     layout:{
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
+        gap: 20,
         paddingHorizontal: 10,
         paddingVertical: 10,
         marginBottom: 10
     },
     text:{
         color: 'white',
-        fontSize: 16
+        fontSize: 18
     }
 })
 
