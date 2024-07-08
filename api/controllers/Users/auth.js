@@ -70,7 +70,7 @@ export const login = (req, res)=>{
     }).status(200).json(others)
     }) 
 }
-
+//LOGOUT
 export const logout = (req, res)=>{
     res.clearCookie("accessToken",{
         secure: true,
