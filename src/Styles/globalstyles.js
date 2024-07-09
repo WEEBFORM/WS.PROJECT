@@ -79,6 +79,7 @@ export const Globalstyles = StyleSheet.create({
     flexDirection:'column',
     // padding: 25,
     color: 'white',
+    position: 'relative'
     // borderWidth: 1,
     // borderColor: "red"
   },

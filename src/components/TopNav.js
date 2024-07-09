@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, SafeAreaView, ImageBackground, Image} from "react-native";
 
 
-const TopNav = () => {
+const TopNav = ({sidebar}) => {
   return (
     <View style={styles.layout}>
     <View style={styles.imagesCon}>
@@ -11,7 +11,9 @@ const TopNav = () => {
         <View style={styles.right}>
         <Image source={require('../assets/notis.png')} />
         <Image source={require('../assets/search.png')} />
-        <Image source={require('../assets/menu.png')} />
+        <View onTouchStart={sidebar}>
+        <Image source={require('../assets/menu.png')}  />
+        </View>
         </View>
     </View>
   )
@@ -25,8 +27,9 @@ const styles = StyleSheet.create({
     }, 
     right:{
         flexDirection: 'row',
-        gap: 30,
-        alignItems: 'center'
+        gap: 20,
+        alignItems: 'center',
+        marginRight: 15
     },
     imagesCon:{
         flex: 1,

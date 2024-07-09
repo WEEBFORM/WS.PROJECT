@@ -9,7 +9,7 @@ import Story from '../components/Story/Story';
 import EachStory from '../components/Story/EachStory';
 import Menu from '../components/Menu';
 import PostOptions from '../components/PostOptions';
-import People from './People';
+import Profile from './Profile';
 import Communities from './Communities';
 import Marketplace from './Marketplace';
 import { NavigationContainer } from '@react-navigation/native';
@@ -53,7 +53,7 @@ const Home = () => {
       </View>
     }
    }} />
-     <Tab.Screen name="Communities" component={People} options={{
+     <Tab.Screen name="Communities" component={Communities} options={{
     tabBarIcon:({focused})=>{
       return <View style={styles.iconLayout}>
         <Image source={require('../assets/comm.png')} resizeMode='contain' style={{
@@ -80,7 +80,7 @@ const Home = () => {
       </View>
     }
    }}  />
-    <Tab.Screen name="Profile" component={Communities} options={{
+    <Tab.Screen name="Profile" component={Profile} options={{
     tabBarIcon:({focused})=>{
       return <View style={styles.iconLayout}>
         <Image source={require('../assets/user.png')} resizeMode='contain' style={{
