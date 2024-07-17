@@ -1,30 +1,66 @@
 import {db} from "../../config/connectDB.js"
 import {authenticateUser} from "../../middlewares/verify.mjs"
 import moment from "moment"
+import multer from "multer";
 
+// HANDLE MEDIA PROCESSING LOGIC
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
 
-//API TO CREATE NEW POST
-export const newPost = (req, res)=>{
-    //CHECK FOR JWT
+const cpUpload = upload.fields([
+    { name: 'image', maxCount: 4 },
+    { name: 'video', maxCount: 4 }
+]);
+
+// API TO CREATE NEW POST
+export const newPost = (req, res) => {
+    // CHECK FOR JWT
     authenticateUser(req, res, () => {
         const user = req.user;
-        //QUERY DB TO CREATE POST
-        const q = "INSERT INTO posts (`userId`,`desc`, `img`,`video`, `tags`, `category`,`createdAt`) VALUES (?)"
-        const values =[
-            user.id,
-            req.body.desc,
-            req.body.img,
-            req.body.video,
-            req.body.tags,
-            req.body.category,
-            moment(Date.now()).format("YYYY-MM-DD HH:MM:SS")
-        ]
-        db.query(q, [values], (err,data)=>{
-        if(err) return res.status(500).json(err)
-        res.status(200).json("Post created successfully")
-        })
+        cpUpload(req, res, function (err) {
+            if (err instanceof multer.MulterError) {
+                return res.status(500).json({ message: "File upload error", error: err });
+            } else if (err) {
+                return res.status(500).json({ message: "Unknown error", error: err });
+            }
+
+            // Handle the uploaded files
+            const images = req.files['image'] ? req.files['image'].map(file => file.path) : [];
+            const videos = req.files['video'] ? req.files['video'].map(file => file.path) : [];
+
+            if (images.length === 0 && videos.length === 0) {
+                return res.status(400).send('Files were not uploaded correctly.');
+            }
+
+            // CONVERT MEDIA ARRAY TO COMMA SEPERATED STRINGS TO STORE IN THE DB
+            const image = images.join(',');
+            const video = videos.join(',');
+
+            // QUERY DB TO CREATE POST
+            const q = "INSERT INTO posts (`userId`, `description`, `image`, `video`, `tags`, `category`, `createdAt`) VALUES (?)";
+            const values = [
+                user.id,
+                req.body.description,
+                image,
+                video,
+                req.body.tags,
+                req.body.category,
+                moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
+            ];      
+            db.query(q, [values], (err, data) => {
+                if (err) return res.status(500).json(err);
+                res.status(200).json("Post created successfully");
+            });
+        });
     });
-}
+};
 
 //API TO VIEW POST IN USER PROFILE
 export const userPosts = (req, res) => {

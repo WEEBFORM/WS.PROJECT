@@ -3,6 +3,8 @@ import mysql from "mysql"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
+
+import fs from "fs"
 import {config} from "dotenv"
 import authRoute from "./routes/auth.js"
 import Users from "./routes/users.js"
@@ -20,7 +22,7 @@ app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 config()
 app.use('/api/v1/user', authRoute)
-app.use('/', Users)
+app.use('/api/v1/user', Users)
 app.use('/api/v1/posts/', postRoute)
 app.use('/api/v1/reach/', followRoute)
 app.use(Likes)
@@ -31,6 +33,5 @@ app.use('/api/v1/stories', Stories)
  
 const port = process.env.port 
 app.listen(port,  ()=>{
-    console.log("Server running");
-     
+    console.log("Server running");  
 })
