@@ -30,7 +30,7 @@ export const register = (req, res, next) => {
         } else if (err) {
             return res.status(500).json({ message: "Unknown error", error: err });
         }
-
+  
         try {
             // CHECK FOR EXISTING USERNAME OR EMAIL
             const q = "SELECT * FROM users WHERE username = ? OR email = ?";
@@ -62,7 +62,7 @@ export const register = (req, res, next) => {
                     return res.status(400).send('Files were not uploaded correctly.');
                 }
 
-                // Register user
+                // Register user 
                 const r = "INSERT INTO users (`email`, `username`, `nationality`, `password`, `coverPhoto`, `profilePic`, `bio`) VALUES (?)";
                 const values = [
                     req.body.email,
@@ -73,7 +73,7 @@ export const register = (req, res, next) => {
                     profilePic,
                     req.body.bio,
                 ];
-
+ 
                 db.query(r, [values], (err, data) => {
                     if (err) {
                         return res.status(500).json(err);
@@ -86,6 +86,7 @@ export const register = (req, res, next) => {
                 });
             });
         } catch (err) {
+            throw err;
             next(errorHandler);
         }
     });
